@@ -42,8 +42,8 @@ Add these as **Repository Secrets** (`Settings → Secrets → Actions`):
 
 Add these as **Repository Variables** (`Settings → Variables → Actions`):
 - `ALERT_EMAIL` — where to receive alerts
-- `FROM_EMAIL` — must be a verified domain in Resend
 - `WATCH_KEYWORDS` — comma-separated keywords to monitor, e.g. `binance,bybit,youhodler`
+- `FROM_EMAIL` *(optional)* — custom sender email, requires verified domain in Resend. Defaults to `onboarding@resend.dev`
 
 Push to GitHub — the workflow runs automatically on schedule.
 

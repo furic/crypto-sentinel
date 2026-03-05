@@ -104,7 +104,7 @@ export const sendAlert = async (
 ): Promise<void> => {
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.ALERT_EMAIL;
-  const fromEmail = process.env.FROM_EMAIL ?? "sentinel@yourdomain.com";
+  const fromEmail = process.env.FROM_EMAIL ?? "onboarding@resend.dev";
 
   if (!apiKey) throw new Error("RESEND_API_KEY is not set");
   if (!toEmail) throw new Error("ALERT_EMAIL is not set");

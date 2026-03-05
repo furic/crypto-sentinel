@@ -37,6 +37,5 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           ALERT_EMAIL: ${{ vars.ALERT_EMAIL }}
-          FROM_EMAIL: ${{ vars.FROM_EMAIL }}
           WATCH_KEYWORDS: ${{ vars.WATCH_KEYWORDS }}
         run: node dist/index.js
