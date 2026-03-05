@@ -3,7 +3,7 @@ import type { Article, RiskResult } from "./types.js";
 
 const RISK_PROMPT = `You are a financial risk monitor for crypto exchange holdings.
 
-The user holds assets on YouHodler and Bybit. Analyze the following news headlines and return ONLY a JSON object (no markdown, no code fences) with this exact structure:
+The user holds assets on various crypto exchanges. Analyze the following news headlines and return ONLY a JSON object (no markdown, no code fences) with this exact structure:
 {
   "risk_level": "none" | "low" | "medium" | "high" | "critical",
   "summary": "1-2 sentence plain-English explanation",
@@ -28,7 +28,7 @@ export const analyzeRisk = async (articles: Article[]): Promise<RiskResult> => {
   if (!apiKey) throw new Error("GEMINI_API_KEY is not set");
 
   const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
 
   const headlineList = articles
     .map((a) => `- [${a.source}] ${a.title}`)
