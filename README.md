@@ -8,7 +8,7 @@ AI-powered crypto news monitor that watches for risk signals about your chosen e
 
 ## Email Alert Preview
 
-<img src="docs/email-alert.png" alt="Email alert preview" width="480">
+<img src="docs/mockups/email-alert.png" alt="Email alert preview" width="480">
 
 ## Setup
 
