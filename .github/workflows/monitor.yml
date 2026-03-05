@@ -1,0 +1,42 @@
+name: Crypto Sentinel
+
+on:
+  schedule:
+    # 4x/day: 10am, 4pm, 10pm, 4am AEDT (UTC+11 in summer)
+    - cron: "0 23,5,9,15 * * *"
+  workflow_dispatch: # allow manual trigger from GitHub UI
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Restore article cache
+        uses: actions/cache@v4
+        with:
+          path: cache.json
+          key: sentinel-cache-${{ github.run_id }}
+          restore-keys: sentinel-cache-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Run sentinel
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
+          FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+          WATCH_KEYWORDS: ${{ vars.WATCH_KEYWORDS }}
+        run: node dist/index.js

@@ -1,0 +1,22 @@
+{
+  "name": "crypto-sentinel",
+  "version": "1.0.0",
+  "description": "AI-powered risk monitor for YouHodler and Bybit",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "lint": "eslint src/**/*.ts"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "resend": "^4.0.0",
+    "rss-parser": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.0"
+  }
+}
