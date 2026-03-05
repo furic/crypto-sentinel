@@ -36,7 +36,7 @@ The main entry point (`src/index.ts`) orchestrates this flow:
 |------|---------|
 | `src/index.ts` | Main entry — orchestrates the pipeline |
 | `src/feeds.ts` | Fetches 5 RSS feeds, filters by keywords, deduplicates via MD5 |
-| `src/analyze.ts` | Sends headlines to Gemini 2.5 Flash Lite, parses JSON risk response |
+| `src/analyze.ts` | Sends headlines to Gemini 2.5 Flash, parses JSON risk response |
 | `src/notify.ts` | Builds color-coded HTML email, sends via Resend |
 | `src/telegram.ts` | Sends Telegram alerts via Bot API (native fetch, no dependencies) |
 | `src/cache.ts` | JSON file cache of seen article IDs |

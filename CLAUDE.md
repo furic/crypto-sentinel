@@ -43,7 +43,7 @@ loadCache() → fetchArticles() → filter unseen → analyzeRisk() → saveCach
 |------|---------|
 | `src/index.ts` | Main entry — orchestrates the pipeline |
 | `src/feeds.ts` | Fetches 5 RSS feeds (CoinTelegraph, Decrypt, TheBlock, CryptoSlate, Google News), filters by WATCH_KEYWORDS, deduplicates via MD5 hash of URL |
-| `src/analyze.ts` | Sends headlines to Gemini 2.5 Flash Lite, expects structured JSON risk assessment |
+| `src/analyze.ts` | Sends headlines to Gemini 2.5 Flash, expects structured JSON risk assessment |
 | `src/notify.ts` | Builds rich HTML email with color-coded risk levels, sends via Resend from `Crypto Sentinel <onboarding@resend.dev>` |
 | `src/telegram.ts` | Sends Telegram alerts via Bot API (native fetch, no npm deps). Gracefully skips if not configured |
 | `src/cache.ts` | JSON file-based cache of seen article IDs (keeps last 500) |

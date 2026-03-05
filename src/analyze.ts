@@ -28,7 +28,7 @@ export const analyzeRisk = async (articles: Article[]): Promise<RiskResult> => {
   if (!apiKey) throw new Error("GEMINI_API_KEY is not set");
 
   const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
   const headlineList = articles
     .map((a) => `- [${a.source}] ${a.title}`)

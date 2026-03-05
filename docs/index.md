@@ -21,7 +21,7 @@ When risk is detected, you receive a polished alert with an AI summary, specific
 | Component | Service | Cost |
 |-----------|---------|------|
 | News Feeds | RSS (CoinTelegraph, Decrypt, The Block, CryptoSlate, Google News) | Free |
-| AI Analysis | Google Gemini 2.5 Flash Lite | Free (1,500 req/day) |
+| AI Analysis | Google Gemini 2.5 Flash | Free (1,500 req/day) |
 | Email Alerts | Resend.com | Free (3,000/month) |
 | Telegram Alerts | Telegram Bot API | Free |
 | Scheduler | GitHub Actions | Free (cron) |
