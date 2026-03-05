@@ -39,10 +39,10 @@ npm run dev
 Add these as **Repository Secrets** (`Settings → Secrets → Actions`):
 - `GEMINI_API_KEY`
 - `RESEND_API_KEY`
+
+Add these as **Repository Variables** (`Settings → Variables → Actions`):
 - `ALERT_EMAIL` — where to receive alerts
 - `FROM_EMAIL` — must be a verified domain in Resend
-
-Add a **Repository Variable** (`Settings → Variables → Actions`):
 - `WATCH_KEYWORDS` — comma-separated keywords to monitor, e.g. `binance,bybit,youhodler`
 
 Push to GitHub — the workflow runs automatically on schedule.
