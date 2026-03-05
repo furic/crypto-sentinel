@@ -16,7 +16,7 @@ Used for AI-powered risk analysis of news headlines.
 3. Click **Get API key** → **Create API key**
 4. Copy the key to `GEMINI_API_KEY`
 
-**Free tier:** 1,500 requests/day — more than enough for 4 runs/day.
+**Free tier:** 250 requests/day — more than enough for 4 runs/day.
 
 ## Resend (required)
 
@@ -52,10 +52,9 @@ Send any message to your new bot so it can message you back.
 
 ## Summary
 
-| Variable | Required | Source |
-|----------|----------|--------|
+| Secret | Required | Source |
+|--------|----------|--------|
 | `GEMINI_API_KEY` | Yes | [aistudio.google.com](https://aistudio.google.com) |
 | `RESEND_API_KEY` | Yes | [resend.com](https://resend.com) |
-| `RECIPIENT_EMAIL` | Yes | Your email address |
 | `TELEGRAM_BOT_TOKEN` | No | [@BotFather](https://t.me/BotFather) |
 | `TELEGRAM_CHAT_ID` | No | [@userinfobot](https://t.me/userinfobot) |

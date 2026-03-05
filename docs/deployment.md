@@ -26,8 +26,8 @@ Go to **Settings → Secrets and variables → Actions → Variables**:
 
 | Variable | Example |
 |----------|---------|
-| `RECIPIENT_EMAIL` | `your@email.com` |
 | `WATCH_KEYWORDS` | `binance,bybit,youhodler` |
+| `RECIPIENT_EMAIL` | `your@email.com` |
 
 ## How It Runs
 
