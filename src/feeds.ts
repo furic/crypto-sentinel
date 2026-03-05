@@ -4,6 +4,30 @@ import type { Article } from "./types.js";
 
 const parser = new Parser({ timeout: 10000 });
 
+/**
+ * Google News RSS links are redirect wrappers (news.google.com/rss/articles/...).
+ * Resolve them to the actual article URL by following the redirect.
+ * This prevents issues with email click-tracking proxies (e.g. Resend) being
+ * blocked by Google's bot detection.
+ */
+const resolveGoogleNewsUrl = async (url: string): Promise<string> => {
+  try {
+    const res = await fetch(url, { method: "HEAD", redirect: "follow" });
+    // Use the final URL after redirects
+    if (res.url && res.url !== url) return res.url;
+  } catch {
+    // If HEAD fails, try GET with manual redirect
+    try {
+      const res = await fetch(url, { redirect: "manual" });
+      const location = res.headers.get("location");
+      if (location) return location;
+    } catch {
+      // Fall through to return original
+    }
+  }
+  return url;
+};
+
 // RSS feeds that reliably cover crypto exchange news
 const RSS_FEEDS = [
   {
@@ -70,17 +94,25 @@ export const fetchArticles = async (): Promise<Article[]> => {
     try {
       const url = `https://news.google.com/rss/search?q=${encodeURIComponent(query + " crypto")}&hl=en-AU&gl=AU&ceid=AU:en`;
       const parsed = await parser.parseURL(url);
-      for (const item of parsed.items?.slice(0, 10) ?? []) {
-        const title = item.title ?? "";
-        const link = item.link ?? "";
-        if (!title || !link) continue;
-        articles.push({
-          id: makeId(link),
-          title,
-          url: link,
-          source: "Google News",
-          publishedAt: item.pubDate ?? new Date().toISOString(),
-        });
+      const items = parsed.items?.slice(0, 10) ?? [];
+      // Resolve all Google News redirect URLs in parallel
+      const resolved = await Promise.all(
+        items.map(async (item) => {
+          const title = item.title ?? "";
+          const link = item.link ?? "";
+          if (!title || !link) return null;
+          const realUrl = await resolveGoogleNewsUrl(link);
+          return {
+            id: makeId(realUrl),
+            title,
+            url: realUrl,
+            source: "Google News" as const,
+            publishedAt: item.pubDate ?? new Date().toISOString(),
+          };
+        })
+      );
+      for (const article of resolved) {
+        if (article) articles.push(article);
       }
     } catch (err) {
       console.warn(`[feeds] Google News failed for "${query}": ${(err as Error).message}`);
