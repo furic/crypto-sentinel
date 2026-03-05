@@ -5,7 +5,7 @@ nav_order: 5
 
 # Deployment
 
-Crypto Sentinel runs on GitHub Actions as a scheduled workflow. No server needed.
+Crypto Sentinel runs on GitHub Actions as a scheduled workflow. No server needed. The easiest way to get started is to **fork this repo** and configure your own secrets and variables.
 
 ## GitHub Setup
 

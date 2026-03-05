@@ -5,13 +5,20 @@ nav_order: 2
 
 # Getting Started
 
-## Prerequisites
+## Recommended: Fork and Deploy
 
-- **Node.js** 18+ (22 recommended)
+The easiest way to use Crypto Sentinel is to **fork this repo** and add your secrets and variables — no local setup needed. See the [Quick Start on the home page](.) or [Deployment](deployment) for details.
+
+## Local Development
+
+If you want to run locally or contribute:
+
+### Prerequisites
+
+- **Node.js** 22+
 - **npm** (comes with Node)
-- A **GitHub** account (for Actions deployment)
 
-## Installation
+### Installation
 
 ```bash
 git clone https://github.com/furic/crypto-sentinel.git
@@ -19,7 +26,7 @@ cd crypto-sentinel
 npm install
 ```
 
-## Local Configuration
+### Configuration
 
 ```bash
 cp .env.example .env
@@ -36,7 +43,7 @@ WATCH_KEYWORDS=binance,bybit,youhodler
 
 See [API Keys](api-keys) for step-by-step instructions on getting each key.
 
-## First Run
+### First Run
 
 ```bash
 npm run dev

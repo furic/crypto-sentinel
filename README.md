@@ -1,10 +1,13 @@
-# crypto-sentinel
+# Crypto Sentinel
 
 [![Crypto Sentinel](https://github.com/furic/crypto-sentinel/actions/workflows/monitor.yml/badge.svg)](https://github.com/furic/crypto-sentinel/actions/workflows/monitor.yml)
 [![Deploy Docs](https://github.com/furic/crypto-sentinel/actions/workflows/docs.yml/badge.svg)](https://github.com/furic/crypto-sentinel/actions/workflows/docs.yml)
+[![Node.js](https://img.shields.io/badge/Node.js-22%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Gemini](https://img.shields.io/badge/Google_Gemini-2.5_Flash-4285F4?logo=google&logoColor=white)](https://ai.google.dev/)
+[![npm](https://img.shields.io/npm/v/crypto-sentinel?logo=npm&logoColor=white)](https://www.npmjs.com/package/crypto-sentinel)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Cost](https://img.shields.io/badge/Cost-%240%2Fmonth-2ecc71)](https://furic.github.io/crypto-sentinel/)
 
 AI-powered crypto news monitor that watches for risk signals about your chosen exchanges and coins. Runs on GitHub Actions 4x/day, analyses headlines via Gemini, and emails you only when meaningful risk is detected.
 
@@ -18,47 +21,39 @@ AI-powered crypto news monitor that watches for risk signals about your chosen e
 
 <img src="docs/mockups/email-alert.png" alt="Email alert preview" width="480">
 
-## Setup
+## Quick Start
 
-### 1. Clone and install
+The easiest way to use Crypto Sentinel is to **fork this repo** and configure it with your own secrets and variables — no code changes needed.
+
+1. **Fork** this repo on GitHub
+2. **Get your API keys** (both free tier):
+
+   | Key | Where | Cost |
+   |-----|-------|------|
+   | `GEMINI_API_KEY` | [aistudio.google.com](https://aistudio.google.com) | Free (1500 req/day) |
+   | `RESEND_API_KEY` | [resend.com](https://resend.com) | Free (3000 emails/month) |
+
+3. **Add config** — go to your fork's `Settings → Secrets and variables → Actions`:
+   - **Secrets** tab: `GEMINI_API_KEY`, `RESEND_API_KEY`
+   - **Variables** tab: `RECIPIENT_EMAIL` (your email), `WATCH_KEYWORDS` (e.g. `binance,bybit,youhodler`)
+4. **Enable Actions** — go to the Actions tab in your fork and enable workflows
+5. **Done** — the monitor runs automatically 4x/day. Go to `Actions → Crypto Sentinel → Run workflow` to trigger immediately.
+
+### Optional: Telegram alerts
+
+Add these as **Secrets** to also receive Telegram notifications:
+- `TELEGRAM_BOT_TOKEN` — from [@BotFather](https://t.me/BotFather)
+- `TELEGRAM_CHAT_ID` — from [@userinfobot](https://t.me/userinfobot)
+
+### Local development
+
 ```bash
-cd ~/Projects
-git clone <your-repo-url> crypto-sentinel
+git clone <your-fork-url> crypto-sentinel
 cd crypto-sentinel
 npm install
-```
-
-### 2. Get your API keys
-
-| Key | Where | Cost |
-|-----|-------|------|
-| `GEMINI_API_KEY` | [aistudio.google.com](https://aistudio.google.com) | Free (1500 req/day) |
-| `RESEND_API_KEY` | [resend.com](https://resend.com) | Free (3000 emails/month) |
-
-### 3. Configure locally
-```bash
-cp .env.example .env
-# Fill in your keys
-```
-
-### 4. Test locally
-```bash
+cp .env.example .env   # fill in your keys
 npm run dev
 ```
-
-### 5. Deploy to GitHub Actions
-
-Add these as **Repository Secrets** (`Settings → Secrets → Actions`):
-- `GEMINI_API_KEY`
-- `RESEND_API_KEY`
-- `TELEGRAM_BOT_TOKEN` *(optional)* — from [@BotFather](https://t.me/BotFather)
-- `TELEGRAM_CHAT_ID` *(optional)* — from [@userinfobot](https://t.me/userinfobot)
-
-Add these as **Repository Variables** (`Settings → Variables → Actions`):
-- `RECIPIENT_EMAIL` — where to receive alerts
-- `WATCH_KEYWORDS` — comma-separated keywords to monitor, e.g. `binance,bybit,youhodler`
-
-Push to GitHub — the workflow runs automatically on schedule.
 
 ## Alert thresholds
 

@@ -30,20 +30,17 @@ When risk is detected, you receive a polished alert with an AI summary, specific
 
 ## Quick Start
 
-```bash
-git clone https://github.com/furic/crypto-sentinel.git
-cd crypto-sentinel
-npm install
-cp .env.example .env
-```
+The easiest way to use Crypto Sentinel is to **fork this repo** and configure it with your own secrets and variables — no code changes needed.
 
-Fill in your API keys in `.env`, then:
+1. **Fork** this repo on GitHub
+2. **Get your API keys** — see [API Keys](api-keys) for step-by-step instructions
+3. **Add config** — go to your fork's `Settings → Secrets and variables → Actions`:
+   - **Secrets** tab: `GEMINI_API_KEY`, `RESEND_API_KEY`
+   - **Variables** tab: `RECIPIENT_EMAIL` (your email), `WATCH_KEYWORDS` (e.g. `binance,bybit,youhodler`)
+4. **Enable Actions** — go to the Actions tab in your fork and enable workflows
+5. **Done** — the monitor runs automatically 4x/day
 
-```bash
-npm run dev
-```
-
-See [Getting Started](getting-started) for full setup, or jump to [API Keys](api-keys) if you just need to configure services.
+See [Getting Started](getting-started) for local development, or [Deployment](deployment) for full GitHub Actions details.
 
 ---
 
