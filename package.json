@@ -1,13 +1,42 @@
 {
   "name": "crypto-sentinel",
   "version": "1.0.0",
-  "description": "AI-powered risk monitor for YouHodler and Bybit",
+  "description": "AI-powered crypto news monitor — watches for risk signals and alerts via email and Telegram",
   "main": "dist/index.js",
+  "bin": {
+    "crypto-sentinel": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "crypto",
+    "sentinel",
+    "monitor",
+    "risk",
+    "exchange",
+    "gemini",
+    "ai",
+    "news",
+    "alert",
+    "telegram",
+    "email"
+  ],
+  "author": "Richard Fu",
+  "license": "MIT",
+  "homepage": "https://furic.github.io/crypto-sentinel/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/furic/crypto-sentinel.git"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint src/**/*.ts",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
