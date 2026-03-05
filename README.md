@@ -6,6 +6,10 @@ AI-powered crypto news monitor that watches for risk signals about your chosen e
 
 "Not your keys, not your coins" — but sometimes you have assets on exchanges anyway. Instead of reading crypto news every day hoping to catch early warning signs, this tool does it for you. There are plenty of open-source price alert projects, but none that use AI to analyse *news sentiment and risk* — insolvency rumours, hacks, regulatory actions — and alert you a few times a day so you can act fast to protect your assets.
 
+## Email Alert Preview
+
+<img src="docs/email-alert.png" alt="Email alert preview" width="480">
+
 ## Setup
 
 ### 1. Clone and install
@@ -39,11 +43,12 @@ npm run dev
 Add these as **Repository Secrets** (`Settings → Secrets → Actions`):
 - `GEMINI_API_KEY`
 - `RESEND_API_KEY`
+- `TELEGRAM_BOT_TOKEN` *(optional)* — from [@BotFather](https://t.me/BotFather)
+- `TELEGRAM_CHAT_ID` *(optional)* — from [@userinfobot](https://t.me/userinfobot)
 
 Add these as **Repository Variables** (`Settings → Variables → Actions`):
-- `ALERT_EMAIL` — where to receive alerts
+- `RECIPIENT_EMAIL` — where to receive alerts
 - `WATCH_KEYWORDS` — comma-separated keywords to monitor, e.g. `binance,bybit,youhodler`
-- `FROM_EMAIL` *(optional)* — custom sender email, requires verified domain in Resend. Defaults to `onboarding@resend.dev`
 
 Push to GitHub — the workflow runs automatically on schedule.
 

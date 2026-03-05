@@ -1,6 +1,7 @@
 import { fetchArticles } from "./feeds.js";
 import { analyzeRisk } from "./analyze.js";
 import { sendAlert } from "./notify.js";
+import { sendTelegramAlert } from "./telegram.js";
 import { loadCache, saveCache } from "./cache.js";
 
 // Only alert for these risk levels and above
@@ -37,8 +38,13 @@ const run = async (): Promise<void> => {
 
   // 6. Send alert only if above threshold
   if (ALERT_THRESHOLD.includes(risk.risk_level)) {
-    console.log("[sentinel] Threshold met — sending alert email");
+    console.log("[sentinel] Threshold met — sending alerts");
     await sendAlert(risk, newArticles);
+    try {
+      await sendTelegramAlert(risk, newArticles);
+    } catch (err) {
+      console.error("[telegram] Send failed:", (err as Error).message);
+    }
   } else {
     console.log(`[sentinel] Risk level "${risk.risk_level}" is below threshold — no email sent`);
   }

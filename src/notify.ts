@@ -103,19 +103,17 @@ export const sendAlert = async (
   articles: Article[]
 ): Promise<void> => {
   const apiKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.ALERT_EMAIL;
-  const fromEmail = process.env.FROM_EMAIL ?? "onboarding@resend.dev";
+  const toEmail = process.env.RECIPIENT_EMAIL;
 
   if (!apiKey) throw new Error("RESEND_API_KEY is not set");
-  if (!toEmail) throw new Error("ALERT_EMAIL is not set");
+  if (!toEmail) throw new Error("RECIPIENT_EMAIL is not set");
 
   const resend = new Resend(apiKey);
-  const emoji = RISK_EMOJI[risk.risk_level] ?? "⚪";
 
   const { error } = await resend.emails.send({
-    from: fromEmail,
+    from: "Crypto Sentinel <onboarding@resend.dev>",
     to: toEmail,
-    subject: `${emoji} [Crypto Sentinel] ${risk.risk_level.toUpperCase()} — ${risk.summary.slice(0, 80)}`,
+    subject: `Crypto Sentinel — ${risk.risk_level.toUpperCase()} Risk — ${new Date().toLocaleDateString("en-AU")}`,
     html: buildHtml(risk, articles),
   });
 
